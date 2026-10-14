@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Você me ama? 💗</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Pacifico&display=swap" rel="stylesheet">
+<style>
+:root{--blush:#ffd9e4;--cream:#fff6ec;--rose:#ff6f9f;--berry:#e5384f;--cocoa:#7a4b4b;color-scheme:light;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{height:100%;scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;height:100%;overflow:hidden;font-family:'Fredoka','Nunito','Trebuchet MS',sans-serif;color:var(--cocoa);
+background:radial-gradient(circle at 20% 15%,#fff 0,transparent 40%),radial-gradient(circle at 85% 90%,#ffc2d6 0,transparent 45%),linear-gradient(160deg,var(--cream),var(--blush));background-color:var(--blush)}
+#bg,#fx{position:fixed;inset:0;pointer-events:none}#bg{z-index:0;overflow:hidden}#fx{z-index:50;width:100%;height:100%}
+.fl{position:absolute;bottom:-50px;opacity:.75;animation:rise linear forwards}
+@keyframes rise{to{transform:translate(var(--dx),-115vh) rotate(var(--r));opacity:0}}
+.st{position:absolute;width:6px;height:6px;border-radius:50%;background:#fff;box-shadow:0 0 8px 3px #fff9;animation:tw 3s ease-in-out infinite}
+@keyframes tw{50%{opacity:.15;transform:scale(.4)}}
+.screen{position:fixed;inset:0;z-index:2;overflow:auto;display:flex;padding:16px;transition:opacity .9s ease,visibility .9s}
+.screen>div{margin:auto;text-align:center;display:flex;flex-direction:column;align-items:center;max-width:520px;width:100%}
+#s2{opacity:0;visibility:hidden}#s2.on{opacity:1;visibility:visible}#s1.off{opacity:0;visibility:hidden}
+.stage{position:relative;display:flex;justify-content:center;align-items:flex-end;margin-bottom:6px}
+.pet{width:clamp(110px,36vw,170px);animation:bob 3s ease-in-out infinite}
+.pet.r{animation-delay:-1.4s}.pet+.pet{margin-left:-16px}
+.pet svg{width:100%;display:block;overflow:visible;transition:transform .5s cubic-bezier(.34,1.56,.64,1)}
+@keyframes bob{50%{transform:translateY(-7px) rotate(-1.5deg)}}
+.intro .pet{animation:drop .9s cubic-bezier(.34,1.56,.64,1) both,bob 3s 1s ease-in-out infinite}
+@keyframes drop{from{transform:translateY(-70vh) scale(.6);opacity:0}}
+.hold{position:absolute;left:50%;bottom:6%;translate:-50% 0;z-index:3;font-size:clamp(2.2rem,9vw,3.4rem);animation:beat 1.2s ease-in-out infinite;filter:drop-shadow(0 4px 0 #fff)}
+@keyframes beat{15%{transform:scale(1.25)}30%{transform:scale(1)}45%{transform:scale(1.18)}}
+.stage[data-m=wow] .pet svg,.stage[data-m=sad] .pet svg,.stage[data-m=cry] .pet svg{animation:shake .5s}
+@keyframes shake{20%{transform:translateX(-6px) rotate(-4deg)}40%{transform:translateX(6px) rotate(4deg)}60%{transform:translateX(-4px)}80%{transform:translateX(3px)}}
+.f{display:none}.stage[data-m=n] .f-n,.stage[data-m=sad] .f-sad,.stage[data-m=wow] .f-wow,.stage[data-m=cry] .f-cry,.stage[data-m=happy] .f-happy{display:inline}
+.tear{animation:tw 1s ease-in-out infinite}
+h1{font-family:'Pacifico','Fredoka',cursive;font-weight:400;font-size:clamp(2rem,9vw,3.2rem);margin:.2em 0 .1em;color:var(--berry);text-shadow:0 3px 0 #fff,0 7px 14px #ff6f9f66;line-height:1.15}
+#phrase{min-height:1.8em;margin:.2em 0 1.1em;font-size:1.2rem;font-weight:600}
+.row{display:flex;gap:18px;align-items:center;justify-content:center;min-height:90px;position:relative}
+button{font:inherit;font-weight:600;cursor:pointer;border-radius:999px;border:4px solid #fff;touch-action:manipulation;user-select:none}
+button:focus-visible{outline:3px dashed var(--berry);outline-offset:4px}
+#sim{font-size:1.3rem;padding:.7em 1.6em;color:#fff;background:linear-gradient(180deg,#ff8db2,#ff4d7e);box-shadow:0 6px 0 #d93a68,0 14px 26px #ff4d7e55;
+animation:breathe 2.4s ease-in-out infinite;transition:scale .7s cubic-bezier(.34,1.56,.64,1);position:relative;z-index:6;white-space:nowrap}
+@keyframes breathe{50%{transform:scale(1.045)}}
+#sim:hover,#nao:hover{animation:jelly .65s}
+#sim:active{transform:scale(.9,1.12)}
+@keyframes jelly{0%{transform:scale(1)}25%{transform:scale(1.2,.8)}50%{transform:scale(.86,1.16)}75%{transform:scale(1.08,.94)}100%{transform:scale(1)}}
+#nao{font-size:calc(1.05rem*var(--k,1));padding:.65em 1.4em;color:#b07a86;background:#fff;border:3px solid #ffd0dd;box-shadow:0 4px 0 #f0b9c9;z-index:7;white-space:nowrap}
+#nao.fly{position:fixed;transition:left .45s cubic-bezier(.34,1.56,.64,1),top .45s cubic-bezier(.34,1.56,.64,1),font-size .3s}
+#nao.wig{animation:shake .35s}
+.puff{position:fixed;z-index:60;width:22px;height:22px;border-radius:50%;background:radial-gradient(#fff,#ffd0dd);pointer-events:none;animation:puff .9s ease-out forwards}
+@keyframes puff{to{transform:translate(var(--x),var(--y)) scale(2.4);opacity:0}}
+#snd{position:fixed;top:calc(10px + env(safe-area-inset-top,0px));right:10px;z-index:70;width:46px;height:46px;font-size:1.3rem;background:#fff;border:3px solid #ffd0dd;padding:0;box-shadow:0 3px 0 #f0b9c9;transition:transform .4s cubic-bezier(.34,1.56,.64,1)}
+#snd:hover{transform:rotate(20deg) scale(1.12)}
+#veil{position:fixed;inset:0;z-index:40;background:radial-gradient(circle,#fff 0,#ffb3cd 70%);opacity:0;pointer-events:none;transition:opacity 1.3s ease}
+#veil.in{opacity:1;transition:opacity .2s}
+.big{font-size:clamp(2.1rem,10vw,3.4rem)}
+#s2 h1{animation:none}.pop{animation:popin .9s cubic-bezier(.34,1.56,.64,1) both}
+@keyframes popin{from{transform:scale(.2) rotate(-8deg);opacity:0}}
+#msg{font-size:clamp(1.05rem,4.6vw,1.3rem);line-height:1.6;min-height:9.5em;max-width:30em;margin:.4em 0 .8em;background:#fffc;padding:14px 18px;border-radius:26px;border:3px solid #fff;box-shadow:0 8px 24px #ff6f9f33}
+#msg.typing::after{content:'|';animation:tw .7s infinite}
+#kiss{font-size:1.25rem;padding:.65em 1.5em;color:#fff;background:linear-gradient(180deg,#ff7a8a,var(--berry));box-shadow:0 6px 0 #b82a40;opacity:0;pointer-events:none;transform:scale(.3)}
+#kiss.show{opacity:1;pointer-events:auto;transform:none;transition:all .8s cubic-bezier(.34,1.56,.64,1)}
+#kiss:hover{animation:jelly .65s}
+.hug .pet+.pet{margin-left:-38px}
+.hug .l svg{transform-origin:70% 90%}
+.kiss.stage .l svg{transform:translateX(26px) rotate(9deg)}.kiss.stage .r svg{transform:translateX(-26px) rotate(-9deg)}
+.kh{position:absolute;top:18%;left:50%;translate:-50% 0;font-size:2.2rem;opacity:0;z-index:4}
+.kiss .kh{animation:kh 1.3s ease-out}
+@keyframes kh{20%{opacity:1;transform:scale(1.3)}100%{opacity:0;transform:translateY(-70px) scale(1.7)}}
+.orb{position:absolute;font-size:1.5rem;animation:bob 2.2s ease-in-out infinite}
+@media (prefers-reduced-motion:reduce){.pet,.hold,#sim,.fl,.st,.orb{animation:none!important}}
+</style>
+</head>
+<body>
+<div id="bg"></div>
+<button id="snd" aria-label="Ligar ou desligar o som" title="Som">🔊</button>
+<div id="veil"></div>
+<canvas id="fx"></canvas>
+
+<section class="screen" id="s1"><div>
+ <div class="stage intro" id="st1" data-m="n">
+  <div class="pet l" data-k="cat"></div><div class="pet r" data-k="bear"></div>
+  <div class="hold">💗</div>
+ </div>
+ <h1>Você me ama? 🥺💕</h1>
+ <div id="phrase" aria-live="polite">&nbsp;</div>
+ <div class="row"><button id="sim">SIM!! 💗</button><button id="nao">Não 😒</button></div>
+</div></section>
+
+<section class="screen" id="s2"><div>
+ <div class="stage hug" id="st2" data-m="happy">
+  <span class="orb" style="left:2%;top:10%">💗</span><span class="orb" style="right:0;top:2%;animation-delay:-.7s">✨</span><span class="orb" style="left:12%;bottom:0;animation-delay:-1.2s">💕</span><span class="orb" style="right:8%;bottom:8%;animation-delay:-.3s">🌸</span>
+  <div class="pet l" data-k="cat"></div><div class="pet r" data-k="bear"></div>
+  <div class="kh">💋</div>
+ </div>
+ <h1 class="big" id="eu">EU SABIAAA!! 💗😭</h1>
+ <p id="msg"></p>
+ <button id="kiss">Um beijinho? 💋</button>
+</div></section>
+
+<script>
+const $=s=>document.querySelector(s),R=(a,b)=>a+Math.random()*(b-a),reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+/* bichinhos */
+function pet(k){const bear=k==='bear',fur=bear?'#f6d3b3':'#fffdf8',ink='#7a4b4b',S=`stroke="${ink}" stroke-width="3" stroke-linejoin="round"`;
+const ears=bear?`<circle cx="27" cy="32" r="13" fill="${fur}" ${S}/><circle cx="93" cy="32" r="13" fill="${fur}" ${S}/><circle cx="27" cy="32" r="6" fill="#ffb8cb"/><circle cx="93" cy="32" r="6" fill="#ffb8cb"/>`
+:`<path d="M22 46L27 10L55 30Z" fill="${fur}" ${S}/><path d="M98 46L93 10L65 30Z" fill="${fur}" ${S}/><path d="M30 37L31 21L43 30Z" fill="#ffb8cb"/><path d="M90 37L89 21L77 30Z" fill="#ffb8cb"/>`;
+const extra=bear?`<ellipse cx="60" cy="80" rx="14" ry="10" fill="#fff" opacity=".9"/>`:`<path d="M20 78H8M21 84L10 89M100 78h12M99 84l11 5" stroke="${ink}" stroke-width="2" stroke-linecap="round"/>`;
+const e=(x)=>x;
+return `<svg viewBox="0 0 120 150" aria-hidden="true"><ellipse cx="60" cy="124" rx="31" ry="24" fill="${fur}" ${S}/>${ears}<ellipse cx="60" cy="68" rx="44" ry="38" fill="${fur}" ${S}/>${extra}
+<ellipse cx="34" cy="78" rx="8" ry="5" fill="#ffb3c6" opacity=".85"/><ellipse cx="86" cy="78" rx="8" ry="5" fill="#ffb3c6" opacity=".85"/><ellipse cx="60" cy="75" rx="3.5" ry="2.5" fill="#e5667f"/>
+<g class="f f-n"><circle cx="44" cy="68" r="5" fill="${ink}"/><circle cx="76" cy="68" r="5" fill="${ink}"/><circle cx="42.5" cy="66" r="1.8" fill="#fff"/><circle cx="74.5" cy="66" r="1.8" fill="#fff"/><path d="M54 80q3 4 6 0q3 4 6 0" fill="none" stroke="${ink}" stroke-width="2.5" stroke-linecap="round"/></g>
+<g class="f f-sad"><circle cx="44" cy="69" r="6" fill="${ink}"/><circle cx="76" cy="69" r="6" fill="${ink}"/><circle cx="42" cy="66.5" r="2.6" fill="#fff"/><circle cx="74" cy="66.5" r="2.6" fill="#fff"/><path d="M35 59L51 54M85 59L69 54" stroke="${ink}" stroke-width="2.5" stroke-linecap="round"/><path d="M53 86q7-8 14 0" fill="none" stroke="${ink}" stroke-width="2.5" stroke-linecap="round"/></g>
+<g class="f f-wow"><circle cx="44" cy="67" r="8" fill="#fff" ${S.replace(3,2)}/><circle cx="76" cy="67" r="8" fill="#fff" ${S.replace(3,2)}/><circle cx="44" cy="67" r="3.5" fill="${ink}"/><circle cx="76" cy="67" r="3.5" fill="${ink}"/><ellipse cx="60" cy="87" rx="4.5" ry="6" fill="#b94a5e"/></g>
+<g class="f f-cry"><path d="M37 62L51 69L37 76M83 62L69 69L83 76" fill="none" stroke="${ink}" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path class="tear" d="M41 78q-4 14-1 26M79 78q4 14 1 26" fill="none" stroke="#7ecbff" stroke-width="5" stroke-linecap="round"/><path d="M52 88q4-5 8 0q4 5 8 0" fill="none" stroke="${ink}" stroke-width="2.5" stroke-linecap="round"/></g>
+<g class="f f-happy"><path d="M37 70q7-10 14 0M69 70q7-10 14 0" fill="none" stroke="${ink}" stroke-width="3" stroke-linecap="round"/><path d="M49 81q11 15 22 0Z" fill="#ff7b95" ${S.replace(3,2)}/></g>
+<ellipse cx="34" cy="122" rx="9" ry="7" fill="${fur}" ${S}/><ellipse cx="86" cy="122" rx="9" ry="7" fill="${fur}" ${S}/></svg>`}
+document.querySelectorAll('.pet').forEach(p=>p.innerHTML=pet(p.dataset.k));
+/* fundo */
+const bg=$('#bg'),E=['💗','💕','💖','🤍','✨','⭐','🌸','🎀'];
+function heart(){if(bg.children.length>26)return;const s=document.createElement('span');s.className='fl';s.textContent=E[Math.random()*E.length|0];
+s.style.cssText=`left:${R(0,96)}%;font-size:${R(14,34)}px;animation-duration:${R(9,17)}s;--dx:${R(-60,60)}px;--r:${R(-30,30)}deg`;s.onanimationend=()=>s.remove();bg.appendChild(s)}
+for(let i=0;i<14;i++){const t=document.createElement('i');t.className='st';t.style.cssText=`left:${R(0,100)}%;top:${R(0,100)}%;animation-delay:${R(0,3)}s`;bg.appendChild(t)}
+if(!reduce){for(let i=0;i<9;i++)setTimeout(heart,i*350);setInterval(heart,900)}
+/* som */
+let on=true,ac;
+function beep(f,d=.14,t='sine',w=0,f2){if(!on)return;try{ac=ac||new (window.AudioContext||window.webkitAudioContext)();const o=ac.createOscillator(),g=ac.createGain(),n=ac.currentTime+w;
+o.type=t;o.frequency.setValueAtTime(f,n);if(f2)o.frequency.exponentialRampToValueAtTime(f2,n+d);g.gain.setValueAtTime(.0001,n);g.gain.exponentialRampToValueAtTime(.09,n+.02);g.gain.exponentialRampToValueAtTime(.0001,n+d);o.connect(g).connect(ac.destination);o.start(n);o.stop(n+d+.02)}catch(e){}}
+const snd={pop:()=>{beep(520,.1,'sine',0,900)},sad:()=>{beep(440,.16,'triangle');beep(370,.16,'triangle',.15);beep(300,.28,'triangle',.3)},
+yay:()=>[523,659,784,1047,1319].forEach((f,i)=>beep(f,.2,'sine',i*.09)),kiss:()=>{beep(900,.07,'sine',0,1700);beep(1500,.09,'sine',.09,2200)},poof:()=>beep(700,.35,'triangle',0,150)};
+$('#snd').onclick=e=>{on=!on;e.currentTarget.textContent=on?'🔊':'🔇';snd.pop()};
+/* partículas */
+const cv=$('#fx'),g=cv.getContext('2d');let P=[],run=false,dpr=Math.min(devicePixelRatio||1,2);
+function size(){cv.width=innerWidth*dpr;cv.height=innerHeight*dpr}size();addEventListener('resize',size);
+const COL=['#ff6f9f','#ffd9e4','#fff','#e5384f','#ffc2d6','#ffe28a'];
+function burst(x,y,n,soft){for(let i=0;i<n;i++){const a=R(0,6.283),v=soft?R(1,5):R(4,16),k=Math.random();
+P.push({x,y,vx:Math.cos(a)*v,vy:Math.sin(a)*v-(soft?3:0),gr:soft?-.03:.22,l:0,L:R(80,150),r:R(0,6),vr:R(-.2,.2),s:R(14,32),
+t:soft?'e':k<.5?'e':k<.85?'c':'s',e:soft?'💗':['💗','💕','⭐','✨','🎀','💖'][Math.random()*6|0],c:COL[Math.random()*6|0]})}
+if(!run){run=true;requestAnimationFrame(tick)}}
+function tick(){g.setTransform(dpr,0,0,dpr,0,0);g.clearRect(0,0,innerWidth,innerHeight);g.textAlign='center';g.textBaseline='middle';
+P=P.filter(p=>p.l<p.L);for(const p of P){p.l++;p.vx*=.985;p.vy=p.vy*.985+p.gr;p.x+=p.vx;p.y+=p.vy;p.r+=p.vr;g.globalAlpha=Math.min(1,(p.L-p.l)/30);g.save();g.translate(p.x,p.y);g.rotate(p.r);
+if(p.t==='e'){g.font=p.s+'px serif';g.fillText(p.e,0,0)}else{g.fillStyle=p.c;if(p.t==='c')g.fillRect(-5,-3,10,6);else{g.beginPath();g.arc(0,0,3.5,0,6.283);g.fill()}}g.restore()}
+g.globalAlpha=1;P.length?requestAnimationFrame(tick):(run=false,g.clearRect(0,0,innerWidth,innerHeight))}
+/* botões */
+const sim=$('#sim'),nao=$('#nao'),st1=$('#st1'),ph=$('#phrase'),MAX=7;let n=0,last=0,lx=-999,ly=-999,done=false,mt;
+const words=['Tem certeza? 🥺','Pensa direitinho 😭','Olha que eu vou chorar...','Só existe uma resposta certa 💗','Você não faria isso comigo 💔','Último aviso, amorzinho 🥹','Pronto, o Não foi embora 💨'];
+const moods=['sad','wow','cry','sad','wow','cry','cry'];
+function mood(m,ms=1800){st1.dataset.m=m;clearTimeout(mt);mt=setTimeout(()=>st1.dataset.m='n',ms)}
+function puffs(el){const r=el.getBoundingClientRect();for(let i=0;i<14;i++){const d=document.createElement('i');d.className='puff';d.style.cssText=`left:${r.left+r.width/2-11}px;top:${r.top+r.height/2-11}px;--x:${R(-70,70)}px;--y:${R(-70,40)}px;animation-delay:${R(0,.15)}s`;document.body.appendChild(d);setTimeout(()=>d.remove(),1200)}}
+function grow(){const w=sim.offsetWidth,h=sim.offsetHeight,max=Math.min(innerWidth*.94/w,innerHeight*.8/h);sim.style.scale=1+(max-1)*Math.min(n/MAX,1)**1.1}
+function dodge(e){if(done)return;e&&e.preventDefault&&e.preventDefault();const t=performance.now();if(t-last<320)return;last=t;n++;
+ph.textContent=words[Math.min(n-1,MAX-1)];mood(moods[Math.min(n-1,MAX-1)]);n<MAX?snd.sad():snd.poof();grow();
+if(n>=MAX){puffs(nao);nao.style.display='none';return}
+nao.style.setProperty('--k',Math.max(.45,1-n*.09));
+if(!nao.classList.contains('fly')){const r=nao.getBoundingClientRect();nao.style.left=r.left+'px';nao.style.top=r.top+'px';nao.classList.add('fly');nao.offsetWidth}
+nao.classList.add('wig');setTimeout(()=>nao.classList.remove('wig'),350);
+const w=nao.offsetWidth,h=nao.offsetHeight;let x,y,i=0;do{x=R(8,innerWidth-w-8);y=R(70,innerHeight-h-8);i++}while(i<10&&Math.hypot(x-lx,y-ly)<140);
+lx=x;ly=y;nao.style.left=x+'px';nao.style.top=y+'px'}
+nao.addEventListener('pointerenter',e=>{if(e.pointerType==='mouse')dodge(e)});
+nao.addEventListener('pointerdown',dodge);nao.addEventListener('touchstart',dodge,{passive:false});nao.addEventListener('click',dodge);
+sim.addEventListener('pointerenter',()=>snd.pop());
+sim.addEventListener('click',()=>{if(done)return;done=true;const r=sim.getBoundingClientRect(),cx=Math.min(Math.max(r.left+r.width/2,0),innerWidth),cy=Math.min(Math.max(r.top+r.height/2,0),innerHeight);
+sim.style.animation='none';sim.style.transition='scale .8s cubic-bezier(.7,0,.9,.5)';sim.style.scale=80;st1.dataset.m='happy';snd.yay();nao.style.display='none';
+setTimeout(()=>{burst(cx,cy,170);setTimeout(()=>burst(cx,cy,110),180)},380);
+setTimeout(()=>$('#veil').classList.add('in'),560);
+setTimeout(()=>{$('#s1').classList.add('off');$('#s2').classList.add('on');$('#veil').classList.remove('in');final()},950)});
+/* final */
+function final(){burst(innerWidth/2,innerHeight/2,120);for(let i=0;i<10;i++)setTimeout(heart,i*120);$('#eu').classList.add('pop');
+const txt='Eu te amo muito, meu amor. Você é uma das coisas mais bonitas que aconteceram na minha vida, e se eu pudesse escolher mil vezes, em todas elas eu escolheria você. 💕',ch=Array.from(txt),m=$('#msg');let i=0;
+setTimeout(()=>{m.classList.add('typing');const id=setInterval(()=>{m.textContent+=ch[i++];if(i%4===0)beep(1000+R(0,400),.04,'sine',0);if(i>=ch.length){clearInterval(id);m.classList.remove('typing');$('#kiss').classList.add('show');setInterval(()=>smooch(false),5200)}},38)},1300)}
+function smooch(manual){const s=$('#st2');s.classList.remove('kiss');s.offsetWidth;s.classList.add('kiss');snd.kiss();const r=s.getBoundingClientRect();burst(r.left+r.width/2,r.top+r.height*.3,manual?26:10,true);setTimeout(()=>s.classList.remove('kiss'),1400)}
+$('#kiss').addEventListener('click',e=>{smooch(true);const r=e.currentTarget.getBoundingClientRect();burst(r.left+r.width/2,r.top,45,true);setTimeout(()=>burst(innerWidth/2,innerHeight*.4,40,true),250)});
+</script>
+</body>
+</html>
